@@ -10,11 +10,21 @@ private:
 
 public:
 
-    Matrix(unsigned int m, unsigned int n) : m(m), n(n) {
+    Matrix(unsigned int m, unsigned int n): m(m), n(n) {
         data = new int*[m]; 
         for (unsigned int i = 0; i < m; i++) {
             data[i] = new int[n]; 
 
+        }
+    }
+
+    Matrix(const Matrix& other): m(other.m), n(other.n) {
+        data = new int*[m];
+        for (unsigned int i = 0; i < m; i++) {
+            data[i] = new int[n];
+            for (unsigned int j = 0; j < n; j++) {
+                data[i][j] = other.data[i][j];
+            }
         }
     }
 
@@ -121,8 +131,7 @@ public:
 int main() {
     Matrix A(3, 3);
     A.fillRandom();
-    Matrix B(3, 3);
-    B.fillRandom();
+    Matrix B = A;
 
     std::cout << "Matrix A:" << std::endl;
     std::cout << A << std::endl;
