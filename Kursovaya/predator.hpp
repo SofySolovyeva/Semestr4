@@ -3,7 +3,7 @@
 #include "character.hpp" //включаем другой файл
 
 class Arena; //объявляем арену без описания, опишем ее в другом файле
-//объявляем класс предатор, созданный из класса персонаж (так что он наследует из него члены и атрибуты)
+//объявляем класс хищник, созданный из класса персонаж (так что он наследует из него члены и атрибуты)
 class Predator : public Character {
 public:
 	Predator(const Point2D& pos) : Character(pos, Predator::getAvailableDirs()) {};
