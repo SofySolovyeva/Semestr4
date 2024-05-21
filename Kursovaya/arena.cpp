@@ -34,18 +34,18 @@ void Arena::play()
         }
         display();
     }
-    std::cout << "Игра окончена! Жертва поймана!\n";
+    std::cout << "game over. prey captured!\n";
     std::cout << prey->getPos().X() << " " << prey->getPos().Y() << "\n";
     std::cout << predator->getPos().X() << " " << predator->getPos().Y();
 }
 
 bool Arena::askForSide() const
 {
-    std::cout << "Выбери сторону?\n1 - хищник, 2 - жертва\n";
+    std::cout << "chosse side\n1 - predator, 2 - prey\n";
     int ans = -1;
     std::cin >> ans;
     while (ans < 1 || ans > 2) {
-        std::cout << "Некорректное значение, попробуй еще раз!\n";
+        std::cout << "wrong, try again!\n";
         std::cin >> ans;
     }
     return ans == 1;
@@ -53,12 +53,11 @@ bool Arena::askForSide() const
 
 int Arena::askForPreyMove() const
 {
-    std::cout << "Куда убегаем?\n0 - вверх, 1 - вправо, 2 - вниз, 3 - влево,"
-        "\n4 - вверх - влево, 5 - вверх - вправо, 6 - вниз - вправо, 7 - вниз - влево\n";
+    std::cout << "Where we go?\n0 - up, 1 - right, 2 - doun, 3 - left, 4 - up left, 5 - up right, 6 - doun right, 7 - doun left\n";
     int ans = -1;
     std::cin >> ans;
     while (ans < 0 || ans > 7 || !isInBounds(prey->getPos() + prey->getAvailableDirsMember()[ans])) {
-        std::cout << "Некорректное значение, либо в этой стороне стена :)\nПопробуй еще раз!\n";
+        std::cout << "wrong number or wall \nTry again\n";
         std::cin >> ans;
     }
     return ans;
@@ -66,21 +65,21 @@ int Arena::askForPreyMove() const
 
 std::pair<int, int> Arena::askForPredatorMove() const
 {
-    std::cout << "Куда двигаемся?\n0 - вверх, 1 - вправо, 2 - вниз, 3 - влево\n";
+    std::cout << "Where we go?\n0 - up, 1 - right, 2 - doun, 3 - left\n";
     int ans_dir = -1;
     std::cin >> ans_dir;
     while (ans_dir < 0 || ans_dir > 3 || !isInBounds(predator->getPos() + predator->getAvailableDirsMember()[ans_dir])) {
-        std::cout << "Некорректное значение, либо в этой стороне стена :)\nПопробуй еще раз!\n";
+        std::cout << "wrong number or wall \nTry again\n";
         std::cin >> ans_dir;
     }
 
-    std::cout << "На сколько клеток двигаемся (от 1 до 3)?\n";
+    std::cout << "how much steps(from 1 to 3)?\n";
     int ans_len = -1;
     std::cin >> ans_len;
     Point2D predator_tmp_pos = predator->getPos();
     predator_tmp_pos.move(predator->getAvailableDirsMember()[ans_dir], std::min(std::max(ans_len, 0), 3));
     while (ans_len < 1 || ans_len > 3 || !isInBounds(predator_tmp_pos)) {
-        std::cout << "Некорректное значение, либо на столько клеток нельзя переместиться из-за стены\nПопробуй еще раз!\n";
+        std::cout << "wrong number or wall\nTry again\n";
         std::cin >> ans_len;
         predator_tmp_pos = predator->getPos();
         predator_tmp_pos.move(predator->getAvailableDirsMember()[ans_dir], std::min(std::max(ans_len, 0), 3));
