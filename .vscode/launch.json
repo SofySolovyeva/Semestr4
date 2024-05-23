@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Sofy/Projects/Semestr4/Lab 6",
-      "program": "c:/Users/Sofy/Projects/Semestr4/Lab 6/build/Debug/outDebug",
+      "cwd": "c:/Users/Sofy/Projects/Semestr4/Lab3",
+      "program": "c:/Users/Sofy/Projects/Semestr4/Lab3/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
